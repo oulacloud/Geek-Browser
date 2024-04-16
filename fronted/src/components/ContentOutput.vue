@@ -1,14 +1,13 @@
-
 <template>
-   <router-view />
+    <div class="content-output">
+
+    </div>
 </template>
 
 <script setup lang="ts">
+
 </script>
 
-
 <style scoped>
-body {
-  margin: 0;
-}
+
 </style>
