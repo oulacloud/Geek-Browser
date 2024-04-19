@@ -76,17 +76,17 @@ export const shortcutList: ShortcutType[] = [
         terminal.focusInput();
       },
     },
-    // {
-    //   code: "Tab",
-    //   action(e, terminal) {
-    //     e.preventDefault();
-    //     if (terminal.isInputFocused()) {
-    //       terminal.setTabCompletion();
-    //     } else {
-    //       terminal.focusInput();
-    //     }
-    //   },
-    // },
+    {
+      code: "Tab",
+      action(e, terminal) {
+        e.preventDefault();
+        if (terminal.isInputFocused()) {
+          terminal.setTabCompletion();
+        } else {
+          terminal.focusInput();
+        }
+      },
+    },
     {
       code: "Backspace",
       action(e, terminal) {

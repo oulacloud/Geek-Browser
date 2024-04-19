@@ -56,6 +56,9 @@
         </a-input>
       </div>
       <!-- 输入提示-->
+      <div v-if="hint && !isRunning" class="terminal-row" style="color: #bbb"> 
+        hint: {{ hint }}
+      </div>
       <div style="margin-bottom: 16px" />
     </div>
   </div>
@@ -67,6 +70,7 @@ import {
   onMounted,
   ref,
   StyleValue,
+watchEffect,
 } from "vue";
 import OutputType = YuTerminal.OutputType;
 import CommandInputType = YuTerminal.CommandInputType;
@@ -99,6 +103,7 @@ const commandList = ref<CommandOutputType[]>([]);
 const isRunning = ref<boolean>(false);
 // 引入终端配置状态
 const configStore = useTerminalConfigStore();
+import useHint from "./hint";
 
 const commandInputRef = ref();
 const terminalRef = ref();
@@ -153,6 +158,7 @@ const {
   listCommandHistory
 } = useHistory(commandList.value , inputCommand);
 
+const { hint,setHint,debounceSetHint } = useHint();
 
 
 
@@ -170,7 +176,7 @@ const prompt = computed(() => {
 const doSubmitCommand = async () => {
   isRunning.value = true;
   // TODO显示提示信息
-
+  setHint("");
   let inputText = inputCommand.value.text;
 
 
@@ -317,6 +323,28 @@ const toggleAllCollapse = () => {
   }
 }
 
+/**
+ * 立即输出
+ * @param newOutput
+ */
+ const writeOutput = (newOutput: OutputType) => {
+  outputList.value.push(newOutput);
+};
+
+/**
+ * 设置输入框的值
+ */
+const setTabCompletion = () => {
+  if(hint.value) {
+    inputCommand.value.text = `${hint.value.split(" ")[0]}${hint.value.split(" ").length > 1 ? " " : ""}`
+  }
+}
+
+// 输入框内容改变时，触发输入提示
+watchEffect(() => {
+  debounceSetHint(inputCommand.value.text);
+});
+
 
 /**
  * 操作终端的对象
@@ -334,7 +362,10 @@ const terminal: TerminalType = {
   listCommandHistory,
   writeResult,
   setCommandCollapsible,
-  toggleAllCollapse
+  toggleAllCollapse,
+  setTabCompletion,
+  doSubmitCommand,
+  writeOutput
 }
 
 

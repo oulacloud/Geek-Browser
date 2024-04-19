@@ -8,6 +8,8 @@ import infoCommand from "./commands/terminal/info/infoCommand";
 import shortcutCommand from "./commands/terminal/shortcut/shortcutCommand";
 import clearCommand from "./commands/terminal/clearCommand";
 import historyCommand from "./commands/terminal/historyCommand";
+import timingCommand from "./commands/timing/timingCommand";
+import hintCommand from "./commands/terminal/config/hintCommand";
 
 /**
  * 命令列表
@@ -20,7 +22,10 @@ const commandList: CommandType[] = [
     infoCommand,
     shortcutCommand,
     clearCommand,
-    historyCommand
+    historyCommand,
+    timingCommand,
+    hintCommand,
+    pingCommand,
 ];
 
 /**
