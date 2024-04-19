@@ -198,7 +198,6 @@ const doSubmitCommand = async () => {
   // 默认展开折叠面板
   activeKeys.value.push(outputList.value.length - 1);
 
-  console.log("hahahahahah",activeKeys.value);
   setTimeout(() => {
     terminalRef.value.scrollTop = terminalRef.value.scrollHeight;
   },50)

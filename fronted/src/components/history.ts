@@ -9,6 +9,8 @@ const useHistory = (
 ) => {
     const commandHistoryPos = ref(commandList.length);
 
+    
+
     const listCommandHistory = () => {
         return commandList;
     }

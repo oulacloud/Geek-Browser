@@ -57,16 +57,16 @@ export const shortcutList: ShortcutType[] = [
         terminal.clear();
       },
     },
-    // {
-    //   desc: "折叠",
-    //   code: "KeyO",
-    //   keyDesc: "Ctrl + O",
-    //   ctrlKey: true,
-    //   action(e, terminal) {
-    //     e.preventDefault();
-    //     terminal.toggleAllCollapse();
-    //   },
-    // },
+    {
+      desc: "折叠",
+      code: "KeyO",
+      keyDesc: "Ctrl + O",
+      ctrlKey: true,
+      action(e, terminal) {
+        e.preventDefault();
+        terminal.toggleAllCollapse();
+      },
+    },
     {
       desc: "粘贴",
       code: "KeyV",
