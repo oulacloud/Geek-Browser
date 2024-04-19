@@ -16,7 +16,7 @@
             :key="index"
           >
             {{ subCommand.func }}
-            {{ key }}
+            {{  key }}
             {{ subCommand.name }}
             {{ subCommand.desc }}
           </li>
