@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { doCommandExecute } from "../core/commandExecutor";
 
 const terminalRef = ref();
@@ -17,10 +17,12 @@ const onSubmitCommand = async (inputText: string) => {
         return;
     } 
     const terminal = terminalRef.value.terminal;
-    
+        
     await doCommandExecute(inputText,terminal);
     
 }
+
+
 
 </script>
 
